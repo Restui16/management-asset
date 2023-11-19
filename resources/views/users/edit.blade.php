@@ -37,16 +37,16 @@
                 </div>
 
                 <div class="card-body mt-3t">
-                    <form class="form" action="{{ route('store.user') }}" method="POST" enctype="multipart/form-data">
+                    <form class="form" action="{{ route('update.user', $users->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        @method('put')
                         <div class="row">
                             <div class="col-md-6 col-12 mt-3">
                                 <div class="form-group">
                                     <label for="name" class="mb-2">Name</label>
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"
-                                        placeholder="Fullname" name="name" value="{{ old('name') }}">
+                                        placeholder="Fullname" name="name" value="{{ old('name', $users->name) }}">
 
                                     @error('name')
                                     <div class="invalid-feedback">
@@ -63,10 +63,14 @@
                                         name="employee_id" id="user" data-placeholder="Select Employee">
                                         <option value="" selected @readonly(true)>
                                             {{ __('Select Employee') }}</option>
+                                        <option value="{{ $users->employee != null ? $users->employee->id : ''}}" {{
+                                            old('employee_id', $users->employee != null && $users->employee->id ==
+                                            $users->employee_id ? 'selected' : '')}}>
+                                            {{ $users->employee != null ? $users->employee->name : ''}}
+                                        </option>
 
                                         @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}" {{ old('employee_id') !='' ? 'selected' : ''
-                                            }}>
+                                        <option value="{{ $employee->id }}" {{ old('employee_id')}}>
                                             {{ $employee->name }}</option>
                                         @endforeach
                                     </select>
@@ -84,7 +88,8 @@
                                     <label for="email" class="mb-2">Email</label>
                                     <input type="email"
                                         class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        placeholder="your@mail.com" name="email" value="{{ old('email') }}">
+                                        placeholder="your@mail.com" name="email"
+                                        value="{{ old('email', $users->email) }}">
 
                                     @error('email')
                                     <div class="invalid-feedback">
@@ -102,19 +107,20 @@
                                         data-placeholder="Choose Role">
                                         <option value="" selected>{{ __('Choose Role') }}</option>
 
-                                        <option value="staff" {{ old('role')=='staff' ? 'selected' : '' }}>
-                                            Staff</option>
+                                        <option value="staff" {{ old('role', $users->role == 'staff' ? 'selected' :
+                                            '')}}>
+                                            Staff
+                                        </option>
 
-                                        <option value="admin" {{ old('role')=='admin' ? 'selected' : '' }}>
+                                        <option value="admin" {{ old('role', $users->role == 'admin' ? 'selected' :
+                                            '')}}>
                                             Admin</option>
 
-                                        @if(Auth::check() && Auth::user()->role == 'superadmin')
-                                        <option value="admin" {{ old('role')=='superadmin' ? 'selected' : '' }}>
-                                            Super Admin</option>    
+                                        @if(Auth::check() && $users->role == 'superadmin')
+                                        <option value="admin" {{ old('role', $users->role == 'superadmin' ? 'selected' :
+                                            '')}}>
+                                            Super Admin</option>
                                         @endif
-
-
-
                                     </select>
                                     @error('role')
                                     <div class="invalid-feedback error-style"

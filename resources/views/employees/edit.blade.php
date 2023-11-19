@@ -81,11 +81,13 @@
                                         name="user_id" id="user" data-placeholder="Select User">
                                         <option value="" selected @readonly(true)>
                                             {{ __('Select User') }}</option>
-                                       <option value="{{ $employees->user != null ? $employees->user->id : ''}}" {{ old('user_id', $employees->user != null && $employees->user->id == $employees->user_id ? 'selected' : '')}}>
-                                        {{ $employees->user != null ? $employees->user->name : ''}}
-                                    </option>
+                                        <option value="{{ $employees->user != null ? $employees->user->id : ''}}" {{
+                                            old('user_id', $employees->user != null && $employees->user->id ==
+                                            $employees->user_id ? 'selected' : '')}}>
+                                            {{ $employees->user != null ? $employees->user->name : ''}}
+                                        </option>
                                         @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" {{ old('user_id',)}}>
+                                        <option value="{{ $user->id }}" {{ old('user_id')}}>
                                             {{ $user->name }}</option>
                                         @endforeach
                                     </select>
