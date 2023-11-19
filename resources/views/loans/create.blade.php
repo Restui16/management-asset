@@ -87,7 +87,7 @@
                                         <option value="">Select Asset</option>
                                         @foreach ($assets as $asset)
                                             <option value="{{ $asset->id }}" @if (in_array($asset->id, old('asset_id[]', []))) data-selected="true" @endif>
-                                                {{ $asset->name}}
+                                                {{ $asset->name . ' - SN ' . $asset->serial_number}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -254,10 +254,10 @@
                 <div class="form-group @error('asset_id[]') is-invalid @enderror" id="rowAsset${incrementalId}">
                     <label for="asset" class="mb-2">Asset ${incrementalId}</label>
                     <select class="form-select  select2" name="asset_id[]" id="newAssets${incrementalId}" data-placeholder="Select Asset">
-                        <option value="">Select Asset</option>
+                        <option value="" selected @readonly(true)>Select Asset</option>
                         @foreach ($assets as $asset)
                             @if (!in_array($asset->id, old('asset_id[]', [])))
-                                <option value="{{ $asset->id }}">{{ $asset->name}}</option>
+                                <option value="{{ $asset->id }}">{{ $asset->name . ' - SN ' . $asset->serial_number }}</option>
                             @endif
                         @endforeach
                     </select>

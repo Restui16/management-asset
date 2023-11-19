@@ -11,7 +11,10 @@
     </header>
 
     <div class="page-heading">
-        <h3>Dashboard</h3>
+        <div class="row d-flex">
+            <h2>Welcome Back {{ Auth::user()->name}}</h2>
+            <h3>Dashboard</h3>
+        </div>
     </div>
     <div class="page-content">
         <section class="row">
@@ -21,8 +24,7 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
-                                    <div
-                                        class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon purple mb-2">
                                             <i class="iconly-boldShow"></i>
                                         </div>
@@ -39,8 +41,7 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
-                                    <div
-                                        class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon blue mb-2">
                                             <i class="iconly-boldProfile"></i>
                                         </div>
@@ -57,8 +58,7 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
-                                    <div
-                                        class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon green mb-2">
                                             <i class="iconly-boldAdd-User"></i>
                                         </div>
@@ -75,8 +75,7 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
-                                    <div
-                                        class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon red mb-2">
                                             <i class="iconly-boldBookmark"></i>
                                         </div>
