@@ -117,13 +117,6 @@
 
                 <li class="sidebar-title">Profile</li>
 
-                <li class="sidebar-item">
-                    <a href="{{ route('profile.edit')}}" class='sidebar-link'>
-                        <i class="bi bi-person-fill"></i>
-                        <span>Setting</span>
-                    </a>
-                </li>
-
                 <li class="sidebar-item {{ request()->routeIs('update.password') ? 'active' : ''}}">
                     <a href="{{ route('update.password')}}" class='sidebar-link'>
                         <i class="bi bi-key-fill"></i>
