@@ -105,6 +105,13 @@
                         </li>
                     </ul>
                 </li>
+                
+                <li class="sidebar-item {{ request()->routeIs('index.monitoring') ? 'active' : '' }}">
+                    <a href="{{ route('index.monitoring') }}" class='sidebar-link'>
+                        <i class="bi bi-display-fill"></i>
+                        <span>Monitoring Asset</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item {{ request()->routeIs('index.user') ? 'active' : '' }}">
                     <a href="{{ route('index.user') }}" class='sidebar-link'>

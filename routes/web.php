@@ -3,11 +3,13 @@
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetReturnController;
 use App\Http\Controllers\CategoryAssetController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MonitoringAssetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -33,9 +35,8 @@ Route::get('/dashboard2', function () {
     return view('dashboard2');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -120,6 +121,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/return', [AssetReturnController::class, 'store'])->name('store.return');
     Route::put('/return/{id}', [AssetReturnController::class, 'update'])->name('update.return');
     Route::delete('/return/{id}', [AssetReturnController::class, 'destroy'])->name('destroy.return');
+    
+    // Monitoring Asset
+    Route::get('/monitoring', [MonitoringAssetController::class, 'index'])->name('index.monitoring');
+
 });
 
 
