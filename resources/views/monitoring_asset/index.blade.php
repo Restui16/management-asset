@@ -16,7 +16,7 @@
                 <div class="col-12 col-md-6 order-md-1 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-start">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Monitoring Asset</li>
                         </ol>
                     </nav>
@@ -43,7 +43,6 @@
                                 <th>Stock</th>
                                 <th>Stock Available</th>
                                 <th>Stock Loaned</th>
-                                <th>Remaining stock</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +53,6 @@
                                 <td>{{ $category->asset->count() }} Pcs</td>
                                 <td>{{ $category->asset->where('status', 'available')->count() }} Pcs</td>
                                 <td>{{ $category->asset->where('status', 'loaned')->count() }} Pcs</td>
-                                <td>{{ $category->asset->where('status', 'available')->count() - $category->asset->where('status', 'loaned')->count() }} Pcs</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -75,6 +75,14 @@ class AssetController extends Controller
         return view('assets.index', compact('title'));
     }
 
+    public function getLimitedAssets()
+    {
+        // Mengambil 10 data terbaru dari tabel assets
+        $assets = Asset::where('status', 'available')->latest()->take(10)->get();
+
+        return response()->json($assets);
+    }
+
     public function create()
     {
         $title = 'Create Asset';
