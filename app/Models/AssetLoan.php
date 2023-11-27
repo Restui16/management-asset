@@ -20,4 +20,9 @@ class AssetLoan extends Model
     {
         return $this->belongsTo(Asset::class);
     }
+
+    public function loan(): BelongsTo
+    {
+        return $this->belongsTo(Loan::class);
+    }
 }

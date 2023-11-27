@@ -39,4 +39,9 @@ class Loan extends Model
     {
         return $this->HasOne(AssetReturn::class);
     }
+
+    public function assetloan(): HasMany
+    {
+        return $this->hasMany(AssetLoan::class);
+    }
 }

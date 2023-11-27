@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/asets', [AssetController::class, 'store'])->name('store.asset');
     Route::put('/asets/{id}', [AssetController::class, 'update'])->name('update.asset');
     Route::delete('/asets/{id}', [AssetController::class, 'destroy'])->name('destroy.asset');
-    Route::get('/limited-assets', [AssetController::class, 'getLimitedAssets']);
+    Route::get('/getDataAsset', [AssetController::class, 'getDataAsset']);
 
     // Loan
     Route::get('/loan', [LoanController::class, 'index'])->name('index.loan');

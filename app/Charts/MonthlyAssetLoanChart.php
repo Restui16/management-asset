@@ -2,8 +2,10 @@
 
 namespace App\Charts;
 
+use App\Models\AssetLoan;
 use App\Models\Loan;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
+use Carbon\Carbon;
 
 class MonthlyAssetLoanChart
 {
@@ -16,12 +18,25 @@ class MonthlyAssetLoanChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        $loans = Loan::with('asset')->get();
+        // dd($assetLoan);
+        $year = date('Y');
+        $month = date('m');
+
+
+        for ($i = 1; $i <= $month; $i++) { 
+            $totalLoanAsset = AssetLoan::whereHas('loan', function ($query) use ($year, $i) {
+                $query->whereYear('loan_date', $year)->whereMonth('loan_date', $i);
+            })->count('asset_id');
+        
+            
+
+            $monthData[] = Carbon::create()->month($i)->format('F');
+            $dataTotalLoanAsset[] = $totalLoanAsset;
+        }
         
         return $this->chart->barChart()
             ->setTitle('Asset Loaned')
-            ->addData('San Francisco', [6, 9, 3, 4, 10, 8])
-            ->addData('Boston', [7, 3, 8, 2, 6, 4])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->addData('Data Asset Loaned', $dataTotalLoanAsset)
+            ->setXAxis($monthData);
     }
 }
