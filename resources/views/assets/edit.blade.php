@@ -146,6 +146,7 @@
                                 </div>
                             </div>
 
+                            @if(Auth::user()->role == 'superadmin')
                             <div class="col-md-6 col-12 mt-3">
                                 <label for="status" class="mb-2">Status</label>
                                 <div class="form-group">
@@ -165,7 +166,7 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            @endif
                             <div class="col-md-6 col-12 mt-3">
                                 <div class="form-group">
                                     <label for="price" class="mb-2">Price</label>

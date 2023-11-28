@@ -31,7 +31,6 @@ class StoreAssetRequest extends FormRequest
             'purchase_date' => ['required'],
             'description' => ['required'],
             'condition' => ['required'],
-            'status' => ['required']
         ];
     }
 }

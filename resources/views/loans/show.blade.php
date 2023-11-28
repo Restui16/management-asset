@@ -39,61 +39,86 @@
 
                 <div class="card-body mt-3t">
                     <div class="row">
-                        <div class="col-md-4 col-12">
-                            <table>
+                        <div class="col-md-6 col-12">
+                            <table class="d-flex ">
                                 <tr>
                                     <th>Loan Code</th>
-                                    <td> : {{ $loans->loan_code}}</td>
+                                    <td>: {{ $loans->loan_code}}</td>
                                 </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-md-2 col-12">
-                            <table>
-                                <tr>
-                                    <th>PIC</th>
-                                    <td>: {{$loans->pic }}</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-md-3 col-12">
-                            <table>
-                                <tr>
-                                    <th>Employee Name</th>
-                                    <td>: {{ $loans->employee->name}}</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-md-3 col-12">
-                            <table>
                                 <tr>
                                     <th>Loan Date</th>
                                     <td>: {{ $loans->loan_date}}</td>
                                 </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-md-3 col-12">
-                            <table>
                                 <tr>
                                     <th>Return Date</th>
-                                    <td> : @if($loans->return_date == null)
+                                    <td>: @if($loans->return_date == null )
                                         Empty
                                         @else
-                                        {{ $loans->return_date}}
+                                        {{$loans->return_date}}
                                         @endif
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>PIC</th>
+                                    <td>: {{ $loans->pic }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Employee Borrowed</th>
+                                    <td>: {{$loans->employee->name}}</td>
+                                </tr>
                             </table>
+                            <span class="fw-bold">Asset : </span>
+                            <table class="mt-2 table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Asset Name</th>
+                                        <th>Serial Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($assetLoans as $assetLoan)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $assetLoan->asset->name}}</td>
+                                        <td>{{ $assetLoan->asset->serial_number}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6 col-12 text-center">
+                            <h3 class="text-center">Photo Receipt</h3>
+                            <img src="{{ asset('storage/photo_receipt/loan/'. $loans->photo_receipt)}}"
+                                class="w-75 h-75" style="object-fit: cover" alt="">
                         </div>
                     </div>
 
-                    <div class="row mt-3 d-flex">
-                        .
+                    <div class="row">
+                        <div class="container d-flex justify-content-between align-items-center p-4">
+                            <div class="signature-admin">
+                                <div class="card">
+                                    <div class="card-header">PIC</div>
+                                    <div class="card-body">
+                                        <img src="{{ asset('storage/signature_loan/admin/'. $loans->signature_admin)}}"
+                                            style="width:100%; object-fit:cover; object-position:center" alt="">
+                                    </div>
+                                    <div class="card-footer">{{ $loans->pic}}</div>
+                                </div>
+                            </div>
+                            <div class="signature-borrowe">
+                                <div class="card">
+                                    <div class="card-header">Employee Borrowed</div>
+                                    <div class="card-body">
+                                    <img src="{{ asset('storage/signature_loan/employee/'. $loans->signature_employee)}}"
+                                        style="width: 100%; object-fit:cover; object-position:center" alt="">
+                                    </div>
+                                    <div class="card-footer">
+                                        {{$loans->employee->name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
