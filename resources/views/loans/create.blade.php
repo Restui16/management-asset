@@ -129,6 +129,8 @@
                                 </div>
                             </div>
 
+                            @if(Auth::user()->role == 'superadmin')
+                                
                             <div class="col-md-6 col-12 mt-3">
                                 <div class="form-group">
                                     <label for="return_date" class="mb-2">Return Date</label>
@@ -143,7 +145,8 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            @endif
+                              
                             <div class="col-md-6 col-12 mt-3">
                                 <div class="form-group">
                                     <label for="photo_receipt" class="mb-2">Photo Receipt</label>
